@@ -329,7 +329,7 @@ body {
 }
 
 #page-5 {
-	height: 40vh;
+	height: 50vh;
 	background-color: var(--dark-blue-2);
 	display: flex;
 	flex-direction: column;

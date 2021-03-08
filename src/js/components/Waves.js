@@ -1,12 +1,14 @@
 class Wave {
 	static resolution = 3;
+	static ghost = 5;
+	static ghostSpace = 30;
 
 	ctx = null;
 	canvas = null;
 	color = "#000";
 
 	mouseX = 0;
-
+	dotSize = 3;
 	waveFn = {
 		a: 1,
 		b: 1,
@@ -34,54 +36,59 @@ class Wave {
 		);
 	}
 
-	constructor(canvas, ctx, waveFn, ampFn, color) {
+	constructor(canvas, ctx, waveFn, ampFn, color, dotSize = 3) {
 		this.waveFn = waveFn;
 		this.ampFn = ampFn;
 		this.ctx = ctx;
 		this.canvas = canvas;
 		this.color = color;
+		this.dotSize = dotSize;
 		window.addEventListener(
 			"mousemove",
 			({ pageX }) => (this.mouseX = pageX)
 		);
 	}
 
-	render(t) {
-		const { mouseX } = this;
-
+	render(time) {
 		const { width, height } = this.canvas;
 		const jump = Wave.resolution;
-		this.ctx.fillStyle = this.color;
-		this.ctx.beginPath();
-		this.ctx.moveTo(0, height);
+		this.ctx.setLineDash([this.dotSize, 12]);
+		this.ctx.strokeStyle = this.color;
+		this.ctx.lineWidth = this.dotSize;
 
-		for (let x = 0; x < width; x += jump) {
-			this.ctx.lineTo(x, this.getY(x, t));
+		for (let depth = 0; depth < Wave.ghost; depth++) {
+			let t = time - depth * Wave.ghostSpace;
+			this.ctx.beginPath();
+			this.ctx.moveTo(0, height);
+
+			for (let x = 0; x < width; x += jump) {
+				this.ctx.lineTo(x, this.getY(x, t));
+			}
+
+			this.ctx.lineTo(width, this.getY(width, t));
+			this.ctx.lineTo(width, height);
+			this.ctx.moveTo(0, height);
+			this.ctx.closePath();
+			this.ctx.stroke();
 		}
-
-		this.ctx.lineTo(width, this.getY(width, t));
-		this.ctx.lineTo(width, height);
-		this.ctx.moveTo(0, height);
-		this.ctx.closePath();
-		this.ctx.fill();
 	}
 }
 
 class Waves {
 	static bg = "#131024";
-	static colors = ["#ffa15555", "#ff557555", "#ff4a8655", "#ffa15555"];
+	static colors = ["#ffa15599", "#ff557599", "#ff4a8699", "#ffa15599"];
 
 	el = null;
 	canvas = null;
 	ctx = null;
-	speed = 15;
+	speed = 7;
 
 	t = 0;
 	waves = [];
 
 	setDims() {
 		const { height, width } = this.el.getBoundingClientRect();
-		this.canvas.height = height * 0.75;
+		this.canvas.height = height * 0.73;
 		this.canvas.width = width;
 	}
 
@@ -95,8 +102,9 @@ class Waves {
 				this.canvas,
 				this.ctx,
 				{ a: 1.2, b: 1 / 250, c: 0, d: 4, e: 20 },
-				{ a: 0.5, b: 1 / 200, c: 0.5 },
-				Waves.colors[1]
+				{ a: 1, b: 1 / 200, c: 0.5 },
+				Waves.colors[1],
+				3
 			)
 		);
 		this.waves.push(
@@ -105,7 +113,8 @@ class Waves {
 				this.ctx,
 				{ a: 1.2, b: 1 / 250, c: 2, d: 4, e: 20 },
 				{ a: 0.4, b: 1 / 300, c: 0.5 },
-				Waves.colors[0]
+				Waves.colors[0],
+				4
 			)
 		);
 		this.waves.push(
@@ -114,7 +123,8 @@ class Waves {
 				this.ctx,
 				{ a: 1.2, b: 1 / 250, c: 4, d: 4, e: 20 },
 				{ a: 0.4, b: 1 / 350, c: 0.5 },
-				Waves.colors[2]
+				Waves.colors[2],
+				2
 			)
 		);
 		this.waves.push(
@@ -123,7 +133,8 @@ class Waves {
 				this.ctx,
 				{ a: 1.2, b: 1 / 250, c: 7, d: 4, e: 20 },
 				{ a: 0.4, b: 1 / 150, c: 0.5 },
-				Waves.colors[3]
+				Waves.colors[3],
+				3
 			)
 		);
 	}
