@@ -52,10 +52,7 @@ class Marquee {
 		this.el.addEventListener("mouseleave", this.handleLeave.bind(this));
 	}
 
-	constructor(
-		selector,
-		{ hoverStyles = null, right = false, speed = 2 } = {}
-	) {
+	constructor(selector, { hoverStyles, right = false, speed = 2 } = {}) {
 		document.addEventListener("DOMContentLoaded", () => {
 			this.el = document.querySelector(selector);
 			this.render = this.render.bind(this);
@@ -69,7 +66,7 @@ class Marquee {
 
 			cursor.add(
 				selector,
-				hoverStyles || {
+				hoverStyles ?? {
 					borderColor: "transparent",
 					backgroundColor: "#333",
 					height: "50px",
