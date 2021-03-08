@@ -265,18 +265,21 @@ body {
 
 #project-canvas {
 	position: absolute;
-	top: -27%;
+	top: -30%;
 	left: 50%;
 	transform: translateX(-50%) scale(0.65);
 }
 
-#projects {
+#projects-container {
 	position: relative;
 	top: 15%;
-	width: 80vw;
 	background-color: var(--text);
-	white-space: nowrap;
+}
+
+#projects {
+	width: 80vw;
 	overflow: hidden;
+	white-space: nowrap;
 }
 
 .project {
@@ -291,6 +294,18 @@ body {
 
 .project > img {
 	width: 170px;
+	position: relative;
+	border-radius: 10px;
+	pointer-events: none;
+}
+
+.project-featherx img {
+	width: 130px;
+	top: -20px;
+}
+
+.project-aba img {
+	top: -10px;
 }
 
 .project > h2 {
@@ -315,12 +330,20 @@ body {
 }
 
 .projects-move {
+	z-index: 10;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
 	left: 5%;
-	height: 40px;
-	width: 40px;
+	height: 60px;
+	width: 60px;
+	padding: 14px;
+	border-radius: 50%;
+	transition: background-color 0.2s;
+}
+
+.projects-move:hover {
+	background-color: rgba(10, 10, 10, 0.08);
 }
 
 #projects-move-right {

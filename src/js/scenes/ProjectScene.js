@@ -1,11 +1,4 @@
-import {
-	MeshPhysicalMaterial,
-	Mesh,
-	PointLight,
-	BoxGeometry,
-	SphereGeometry,
-	SphereBufferGeometry,
-} from "three";
+import { MeshPhysicalMaterial, Mesh, PointLight, BoxGeometry } from "three";
 import BaseScene from "./BaseScene";
 import Projects from "./Projects";
 

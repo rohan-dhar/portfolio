@@ -25,6 +25,9 @@ class ProjectsView {
 	}
 
 	set active(active) {
+		if (active < 0 || active > this.num) {
+			return;
+		}
 		this.scene.active = active;
 		this._active = active;
 	}
@@ -38,6 +41,16 @@ class ProjectsView {
 		this._childWidth = childWidth;
 	}
 
+	next() {
+		this.active += 1;
+		this.moveToActive();
+	}
+
+	prev() {
+		this.active -= 1;
+		this.moveToActive();
+	}
+
 	attachEvents() {
 		this.el.addEventListener("mousedown", ({ pageX: x }) => {
 			this.start = x;
@@ -46,11 +59,23 @@ class ProjectsView {
 			// 	this.tween.kill();
 			// }
 		});
+
 		document
 			.querySelector("#projects-move-left")
-			.addEventListener("click", () => {
-				this.active = Math.max(this.active + 1);
-			});
+			.addEventListener("click", this.prev);
+
+		document
+			.querySelector("#projects-move-right")
+			.addEventListener("click", this.next);
+
+		document.addEventListener("keydown", ({ keyCode }) => {
+			if (keyCode === 37) {
+				this.prev();
+			} else if (keyCode === 39) {
+				this.next();
+			}
+		});
+
 		document.addEventListener("mouseup", () => {
 			this.start = -1;
 			this.updateAcive();
@@ -109,6 +134,9 @@ class ProjectsView {
 	constructor() {
 		this.scene = new ProjectScene();
 		this.render = this.render.bind(this);
+		this.next = this.next.bind(this);
+		this.prev = this.prev.bind(this);
+
 		document.addEventListener("DOMContentLoaded", () => {
 			this.el = document.querySelector("#projects");
 			this.attachEvents();

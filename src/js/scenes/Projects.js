@@ -4,10 +4,10 @@ import { TimelineLite, Power2 } from "gsap";
 // co-op     - blue        / red
 // spectacle - green       / blue
 // treebo    - light green / dark green
-// aba       - red         / pink
 // featherx  - light blue  / purple
 // storage   - red         / blue
 // dhwani    - dark red   / pink
+// aba       - red         / pink
 
 class Projects {
 	static duration = 10;
@@ -404,10 +404,10 @@ class Projects {
 		this.addCoop();
 		this.addSpectacle();
 		this.addTreebo();
-		this.addAba();
 		this.addFeatherX();
 		this.addStorage();
 		this.addDhwani();
+		this.addAba();
 	}
 
 	progress(to) {

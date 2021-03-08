@@ -157,7 +157,7 @@ class Waves {
 	render() {
 		this.canvas.height = this.canvas.height;
 		this.t += this.speed;
-		if (this.t >= 2000 * Math.PI) {
+		if (this.t >= 8000 * Math.PI) {
 			this.t = 0;
 		}
 		this.waves.forEach((wave) => wave.render(this.t));
