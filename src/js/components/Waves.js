@@ -131,7 +131,7 @@ class Waves {
 			new Wave(
 				this.canvas,
 				this.ctx,
-				{ a: 1.2, b: 1 / 250, c: 7, d: 4, e: 20 },
+				{ a: 1.05, b: 1 / 250, c: 7, d: 4, e: 20 },
 				{ a: 0.4, b: 1 / 150, c: 0.5 },
 				Waves.colors[3],
 				3

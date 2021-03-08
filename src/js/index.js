@@ -19,6 +19,7 @@ const marquee2 = new Marquee("#page-2-marquee-skills", {
 		width: "50px",
 	},
 	speed: 2,
+	slowSpeed: 0.2,
 	right: true,
 });
 

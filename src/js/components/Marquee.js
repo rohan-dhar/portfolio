@@ -7,6 +7,7 @@ class Marquee {
 	first = null;
 	last = null;
 	right = false;
+	slowSpeed = 1;
 
 	render() {
 		const first = this.first.getBoundingClientRect();
@@ -39,26 +40,28 @@ class Marquee {
 		this.last = this.el.children[this.el.children.length - 1];
 	}
 
-	handleEnter() {
-		this.speed /= 2;
-	}
-
-	handleLeave() {
-		this.speed *= 2;
+	swapSpeeds() {
+		const t = this.speed;
+		this.speed = this.slowSpeed;
+		this.slowSpeed = t;
 	}
 
 	attachEvents() {
-		this.el.addEventListener("mouseenter", this.handleEnter.bind(this));
-		this.el.addEventListener("mouseleave", this.handleLeave.bind(this));
+		this.el.addEventListener("mouseenter", this.swapSpeeds.bind(this));
+		this.el.addEventListener("mouseleave", this.swapSpeeds.bind(this));
 	}
 
-	constructor(selector, { hoverStyles, right = false, speed = 2 } = {}) {
+	constructor(
+		selector,
+		{ hoverStyles, right = false, speed = 2, slowSpeed } = {}
+	) {
 		document.addEventListener("DOMContentLoaded", () => {
 			this.el = document.querySelector(selector);
 			this.render = this.render.bind(this);
 			this.setFirst();
 			this.attachEvents();
 			this.speed = speed;
+			this.slowSpeed = slowSpeed ?? this.speed / 2;
 			this.right = right;
 			if (this.right) {
 				this.el.scrollLeft = this.el.scrollWidth - this.el.clientWidth;

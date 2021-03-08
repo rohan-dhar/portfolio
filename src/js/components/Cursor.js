@@ -10,7 +10,7 @@ class Cursor {
 		width: "30px",
 		backgroundColor: "rgba(0,0,0,0)",
 		borderWidth: "2px",
-		borderColor: "#000000aa",
+		borderColor: "#ffffffaa",
 		backgroundImage: "none",
 	};
 
