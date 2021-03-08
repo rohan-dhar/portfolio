@@ -7,7 +7,7 @@ import {
 	SphereBufferGeometry,
 } from "three";
 import BaseScene from "./BaseScene";
-import Projects from "./projects";
+import Projects from "./Projects";
 
 class ProjectScene extends BaseScene {
 	static querySelector = "#project-canvas";
