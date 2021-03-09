@@ -32,7 +32,8 @@ class Cursor {
 	}
 
 	handleMove({ pageX, pageY }) {
-		this.el.style.transform = `translate(${pageX}px, ${pageY}px)`;
+		this.el.style.top = ` ${pageY}px`;
+		this.el.style.left = `${pageX}px`;
 	}
 
 	constructor() {
