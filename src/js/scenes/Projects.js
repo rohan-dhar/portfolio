@@ -105,6 +105,7 @@ class Projects {
 			{ x: 0, y: -3.5, ...rest },
 			"spectacle"
 		);
+
 		this.lightUpTimeline.addLabel("spectacle").to(this.lightUp, {
 			_customColorR: 0x44,
 			_customColorG: 0x44,
@@ -406,8 +407,8 @@ class Projects {
 		this.addTreebo();
 		this.addFeatherX();
 		this.addStorage();
-		this.addDhwani();
 		this.addAba();
+		this.addDhwani();
 	}
 
 	progress(to) {

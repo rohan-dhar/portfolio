@@ -144,6 +144,9 @@ class ProjectsView {
 			this.attachEvents();
 			this.setChildWidth();
 
+			// this.start = window.innerWidth;
+			this.now = 900;
+
 			cursor.add("#projects", {
 				"background-image": `url("${leftRight}")`,
 				borderColor: "transparent",
