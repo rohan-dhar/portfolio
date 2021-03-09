@@ -1,5 +1,5 @@
 const pxToLen = (px) => Number(px.split("px")[0]);
-import { cursor } from "../index";
+import { cursor, audio } from "../index";
 
 class Marquee {
 	el = null;
@@ -46,9 +46,19 @@ class Marquee {
 		this.slowSpeed = t;
 	}
 
+	handleEnter() {
+		this.swapSpeeds();
+		audio.start();
+	}
+
+	handleLeave() {
+		this.swapSpeeds();
+		audio.stop();
+	}
+
 	attachEvents() {
-		this.el.addEventListener("mouseenter", this.swapSpeeds.bind(this));
-		this.el.addEventListener("mouseleave", this.swapSpeeds.bind(this));
+		this.el.addEventListener("mouseenter", this.handleEnter.bind(this));
+		this.el.addEventListener("mouseleave", this.handleLeave.bind(this));
 	}
 
 	constructor(

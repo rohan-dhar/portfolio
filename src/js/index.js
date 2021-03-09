@@ -5,6 +5,10 @@ import Marquee from "./components/Marquee";
 import ScrollClipper from "./components/ScrollClipper";
 import Waves from "./components/Waves";
 import ProjectsView from "./components/ProjectsView";
+import SmoothAudio from "./utils/SmoothAudio";
+import hoverSound from "../sounds/hover3.mp3";
+
+const audio = new SmoothAudio(hoverSound);
 
 const hero = new HeroScene();
 const projects = new ProjectsView();
@@ -49,4 +53,4 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 });
 
-export { cursor };
+export { cursor, audio };

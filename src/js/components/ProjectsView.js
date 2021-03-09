@@ -1,6 +1,6 @@
 import ProjectScene from "../scenes/ProjectScene";
 import { TweenLite, Expo } from "gsap";
-import { cursor } from "../index";
+import { cursor, audio } from "../index";
 import debounce from "../utils/debounce";
 import leftRight from "../../img/left-right.svg";
 
@@ -55,6 +55,7 @@ class ProjectsView {
 		this.el.addEventListener("mousedown", ({ pageX: x }) => {
 			this.start = x;
 			this.base = this.el.scrollLeft;
+			audio.start();
 			// if (this.tween) {
 			// 	this.tween.kill();
 			// }
@@ -79,6 +80,7 @@ class ProjectsView {
 		document.addEventListener("mouseup", () => {
 			this.start = -1;
 			this.updateAcive();
+			audio.stop();
 			this.moveToActive();
 		});
 		document.addEventListener("mousemove", ({ pageX: x }) => {
